@@ -4,6 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+panda = "*"
+pandas = "*"
+python-nmap = "*"
 
 [dev-packages]
 
