@@ -9,9 +9,7 @@ import nmap
 # Kevin
 # Objetivo: varredura nas portas, varredura nas portas abertas 
 def execute_namp(target):
-
     scanner = nmap.PortScanner()
-
     scanner.scan(target)
 
     # Print the scan results
@@ -23,7 +21,6 @@ def execute_namp(target):
             ports = scanner[host][proto].keys()
             for port in ports:
                 print("Port: ", port, "State: ", scanner[host][proto][port]['state'])
-
 
 # Martines
 # Objetivo: varredura de diretorios, 
@@ -52,19 +49,8 @@ def execute_feroxbuster(target):
     print(f'[+] Feroxbuster finalizado! Tempo de execução: {execution_time:.2f} segundos')
 
 
-
-
-
-    
-    print("execute_feroxbuster...")
-
-
-
 # # Will
 # # Objetivo: 
-# def execute_nuclei():
-
-
 def execute_subfinder(target):
 
     command = f'subfinder -d {target} '
@@ -75,7 +61,6 @@ def execute_subfinder(target):
     else:
         print("Erro Subfinder:\n", stderr.decode())
 
-
 def check_feroxbuster_installed():
     try:
         subprocess.run(["which", "feroxbuster"], check=True)
@@ -84,17 +69,11 @@ def check_feroxbuster_installed():
         return False
 
 
-
-    
-    print("execute_nuclei...")
-
-
 def main():
     parser = argparse.ArgumentParser(description='Script para executar recon um alvo especificado.')
     parser.add_argument('target', type=str, help='WSS Recon (exemplo: https://sap.com)')
     
     args = parser.parse_args()
-
 
     execute_namp(args.target)
     execute_feroxbuster(args.target)
@@ -104,6 +83,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-
 # Para executar o script no terminal: python3 scan.py https://sap.com
-
