@@ -3,6 +3,7 @@ import argparse
 from datetime import datetime
 import time
 import os
+import sys
 import pandas as pd
 import nmap
 
@@ -61,8 +62,20 @@ def execute_feroxbuster(target):
 
 
 # # Will
-# # Objetivo: 
-# def execute_nuclei():
+# # Objetivo: scan de vulnerabilidades
+
+
+# Função para executar o Nuclei em um alvo especificado
+def execute_nuclei(target):
+    # Formata a data e hora atual para usar no nome do arquivo de saída
+    data_hora = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    nome_arquivo_saida = f"nuclei_{target.replace('://', '_').replace('/', '_')}_{data_hora}.txt"
+
+    # Executa o comando Nuclei com o alvo especificado e salva a saída no arquivo
+    with open(nome_arquivo_saida, "w") as arquivo_saida:
+        subprocess.run(["nuclei", "-target", target], stdout=arquivo_saida, check=True)
+    
+    print(f"Varredura completa. Resultados salvos em: {nome_arquivo_saida}")
 
 
 def execute_subfinder(target):
