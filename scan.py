@@ -10,9 +10,7 @@ import nmap
 # Kevin
 # Objetivo: varredura nas portas, varredura nas portas abertas 
 def execute_namp(target):
-
     scanner = nmap.PortScanner()
-
     scanner.scan(target)
 
     # Print the scan results
@@ -24,7 +22,6 @@ def execute_namp(target):
             ports = scanner[host][proto].keys()
             for port in ports:
                 print("Port: ", port, "State: ", scanner[host][proto][port]['state'])
-
 
 # Martines
 # Objetivo: varredura de diretorios, 
@@ -53,29 +50,9 @@ def execute_feroxbuster(target):
     print(f'[+] Feroxbuster finalizado! Tempo de execução: {execution_time:.2f} segundos')
 
 
-
-
-
-    
-    print("execute_feroxbuster...")
-
-
-
 # # Will
-# # Objetivo: scan de vulnerabilidades
-
-
-# Função para executar o Nuclei em um alvo especificado
-def execute_nuclei(target):
-    # Formata a data e hora atual para usar no nome do arquivo de saída
-    data_hora = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    nome_arquivo_saida = f"nuclei_{target.replace('://', '_').replace('/', '_')}_{data_hora}.txt"
-
-    # Executa o comando Nuclei com o alvo especificado e salva a saída no arquivo
-    with open(nome_arquivo_saida, "w") as arquivo_saida:
-        subprocess.run(["nuclei", "-target", target], stdout=arquivo_saida, check=True)
-    
-    print(f"Varredura completa. Resultados salvos em: {nome_arquivo_saida}")
+# # Objetivo: 
+# def execute_nuclei():
 
 
 def execute_subfinder(target):
@@ -88,7 +65,6 @@ def execute_subfinder(target):
     else:
         print("Erro Subfinder:\n", stderr.decode())
 
-
 def check_feroxbuster_installed():
     try:
         subprocess.run(["which", "feroxbuster"], check=True)
@@ -97,17 +73,11 @@ def check_feroxbuster_installed():
         return False
 
 
-
-    
-    print("execute_nuclei...")
-
-
 def main():
     parser = argparse.ArgumentParser(description='Script para executar recon um alvo especificado.')
     parser.add_argument('target', type=str, help='WSS Recon (exemplo: https://sap.com)')
     
     args = parser.parse_args()
-
 
     execute_namp(args.target)
     execute_feroxbuster(args.target)
@@ -117,6 +87,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-
 # Para executar o script no terminal: python3 scan.py https://sap.com
-
