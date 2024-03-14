@@ -31,6 +31,11 @@ def execute_feroxbuster(target):
     start_time = time.time()  
     clean_target = target.replace('https://', '').replace('http://', '')
     date = time.strftime("%Y%m%d", time.localtime())
+    output_dir = "scan_result"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)  
+    
+    
     output_file = f"scan_result/{clean_target}_feroxbuster_{date}.txt"
     
    
@@ -82,7 +87,7 @@ def main():
     execute_namp(args.target)
     execute_feroxbuster(args.target)
     execute_subfinder(args.target)
-    execute_nuclei(args.target)
+   execute_nuclei(args.target)
 
 if __name__ == "__main__":
     main()
